@@ -19,7 +19,17 @@ export async function onRequestPost(context){
   const trace=(screening&&resultQuestion)?`\nSCREENING TRACE (deterministic; explain but do not alter):\n${JSON.stringify(screening)}`:'';
   const instructions=`You are the Indiana SNAP Navigator grounded benefits assistant. Answer ONLY from the APPROVED EVIDENCE and, when supplied, the deterministic SCREENING TRACE. Do not use model memory to add SNAP rules, thresholds, exceptions, dates, or legal conclusions. Do not make an official eligibility determination. If the evidence is insufficient, say exactly that and recommend Indiana FSSA review. Explain in plain language. Do not claim a source says something not present in the evidence. Keep the answer concise and useful.`;
   const api=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{'Authorization':`Bearer ${context.env.OPENAI_API_KEY}`,'Content-Type':'application/json'},body:JSON.stringify({model:context.env.OPENAI_MODEL||'gpt-5.6-luna',store:false,instructions,input:`USER QUESTION:\n${question}\n\nAPPROVED EVIDENCE:\n${evidence}${trace}`})});
-  if(!api.ok){const t=await api.text();return json({error:'AI service error',detail:t.slice(0,300)},502)}
+  if(!api.ok){
+  const t=await api.text();
+  return json({
+    answer:`DEBUG — OpenAI API returned HTTP ${api.status}: ${t.slice(0,1000)}`,
+    error:'AI service error',
+    detail:t.slice(0,1000),
+    sources:docs.map(({title,url})=>({title,url})),
+    grounded:true,
+    ai:false
+  },200);
+}
   const data=await api.json(); let answer=data.output_text;
   if(!answer && Array.isArray(data.output)) for(const item of data.output) if(Array.isArray(item.content)) for(const c of item.content) if(c.type==='output_text'&&c.text) answer=(answer||'')+c.text;
   return json({answer:answer||'No answer returned.',sources:docs.map(({title,url})=>({title,url})),grounded:true,ai:true});
