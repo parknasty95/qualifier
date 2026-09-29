@@ -53,5 +53,69 @@ function bot(q){let s=q.toLowerCase();if(last&&(s.includes('why')||s.includes('m
 let scored=KB.map(k=>({k,score:k.keys.reduce((n,key)=>n+(s.includes(key)?key.length:0),0)})).sort((a,b)=>b.score-a.score);if(scored[0]&&scored[0].score>0)return scored[0].k.answer+' <span class="src">Ground truth: '+scored[0].k.source+'</span>';
 if(last){let matches=last.traces.filter(t=>s.split(/\W+/).some(w=>w.length>4&&(t.title+' '+t.body).toLowerCase().includes(w)));if(matches.length)return matches.slice(0,2).map(t=>t.body+' <span class="src">Source: '+t.source+'</span>').join(' ')}
 return 'I cannot answer that reliably from the approved Indiana SNAP knowledge currently loaded into this classroom prototype. I will not guess. For a production version, the next step would be to retrieve the relevant passage from the approved FSSA policy manual and answer only if that passage supports a response.';}
-async function ask(){let q=$('chat').value.trim();if(!q)return;let log=$('chatlog');log.innerHTML+='<div class="msg user">'+q.replace(/[<>]/g,'')+'</div>'; $('chat').value=''; let wait=document.createElement('div');wait.className='msg bot';wait.textContent='Checking approved sources…';log.appendChild(wait);log.scrollTop=log.scrollHeight;try{let screening=last?{status:last.status,review:last.review,fail:last.fail,traces:last.traces}:null;let resp=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,screening})});if(!resp.ok)throw new Error('AI endpoint unavailable');let data=await resp.json();wait.innerHTML=(data.answer||'No supported answer returned.').replace(/\n/g,'<br>')+(data.sources&&data.sources.length?'<div class="src">Sources: '+data.sources.map(x=>x.title).join('; ')+'</div>':'');}catch(e){wait.innerHTML='<b>Local grounded fallback:</b> '+bot(q)+'<div class="src">The live AI endpoint is not configured or reachable, so the prototype used its local approved-source retrieval instead.</div>';}log.scrollTop=log.scrollHeight}$('ask').onclick=ask;$('chat').addEventListener('keydown',e=>{if(e.key==='Enter')ask()});toggle();
+async function ask() {
+  let q = $('chat').value.trim();
+  if (!q) return;
+
+  let log = $('chatlog');
+  log.innerHTML += '<div class="msg user">' + q.replace(/[<>]/g, '') + '</div>';
+  $('chat').value = '';
+
+  let wait = document.createElement('div');
+  wait.className = 'msg bot';
+  wait.textContent = 'Checking approved sources…';
+  log.appendChild(wait);
+  log.scrollTop = log.scrollHeight;
+
+  try {
+    let screening = last ? {
+      status: last.status,
+      review: last.review,
+      fail: last.fail,
+      traces: last.traces
+    } : null;
+
+    let resp = await fetch('/api/ask', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({question: q, screening: screening})
+    });
+
+    let data;
+    try {
+      data = await resp.json();
+    } catch (parseError) {
+      throw new Error('The backend returned HTTP ' + resp.status + ' with a response that was not valid JSON.');
+    }
+
+    if (!resp.ok) {
+      throw new Error(
+        data.detail ||
+        data.error ||
+        ('The backend returned HTTP ' + resp.status)
+      );
+    }
+
+    wait.innerHTML =
+      (data.answer || 'No supported answer returned.').replace(/\n/g, '<br>') +
+      (data.sources && data.sources.length
+        ? '<div class="src">Sources: ' + data.sources.map(x => x.title).join('; ') + '</div>'
+        : '');
+
+  } catch (e) {
+    wait.innerHTML =
+      '<b>DEBUG ERROR:</b> ' +
+      String(e.message || e).replace(/[<>]/g, '') +
+      '<br><br><b>Local grounded fallback:</b> ' +
+      bot(q);
+  }
+
+  log.scrollTop = log.scrollHeight;
+}
+
+$('ask').onclick = ask;
+$('chat').addEventListener('keydown', e => {
+  if (e.key === 'Enter') ask();
+});
+toggle();
 </script></body></html>
