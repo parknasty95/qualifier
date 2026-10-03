@@ -4,227 +4,2194 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Qualifier — Indiana Benefits Navigator</title>
+
 <style>
-:root{--ink:#172033;--muted:#667085;--line:#d9e0ea;--bg:#f5f7fb;--card:#fff;--accent:#2457d6;--good:#147a4a;--warn:#9a6700;--bad:#b42318}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
-.wrap{max-width:1040px;margin:auto;padding:28px 18px 60px}.hero{background:linear-gradient(135deg,#163a8a,#2457d6);color:white;border-radius:18px;padding:28px;margin-bottom:18px}
-.hero h1{font-size:36px;margin:0 0 8px}.hero p{color:#e6ecff;margin:0;max-width:820px}.badge{display:inline-block;background:#ffffff1f;border:1px solid #ffffff55;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:10px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin:14px 0;box-shadow:0 2px 8px #1822300a}.step{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:700}
-.q{font-weight:700;margin:14px 0 7px}.help,.small{color:var(--muted);font-size:13px}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-label.option{display:block;border:1px solid var(--line);border-radius:10px;padding:10px;margin:6px 0}input,select{font:inherit}input[type=number],select{width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;background:white}
-.btn{border:0;border-radius:10px;padding:12px 16px;font-weight:700;cursor:pointer;background:var(--accent);color:white}.btn2{background:white;color:var(--accent);border:1px solid var(--accent)}
-.pill{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700}.good{background:#eaf8f1;color:var(--good)}.warn{background:#fff4d6;color:var(--warn)}.bad{background:#feeceb;color:var(--bad)}
-.program{border:1px solid var(--line);border-radius:12px;padding:15px;margin:12px 0}.program h3{margin:0 0 6px}.trace{border-left:4px solid var(--line);padding:9px 12px;margin:8px 0;background:#fafbfc;border-radius:7px}.trace.goodt{border-color:var(--good)}.trace.warnt{border-color:#e0a100}.trace.badt{border-color:var(--bad)}
-.src{font-size:12px;color:var(--muted)}.src a{color:var(--accent)}#chatlog{max-height:390px;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:12px;background:#fbfcfe}.msg{padding:9px 11px;border-radius:10px;margin:8px 0}.user{background:#edf3ff;margin-left:12%}.bot{background:white;border:1px solid var(--line);margin-right:6%}.chatrow{display:flex;gap:8px;margin-top:10px}.chatrow input{flex:1;padding:11px;border:1px solid var(--line);border-radius:9px}
-.method{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.method>div{border:1px solid var(--line);border-radius:12px;padding:12px}.mode{background:#eef4ff;border:1px solid #c8d8ff;border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13px}
-.hidden{display:none}.footer{color:var(--muted);font-size:12px;margin-top:24px;text-align:center}@media(max-width:720px){.row,.row3,.method{grid-template-columns:1fr}.hero h1{font-size:30px}}
+:root{
+  --ink:#172033;
+  --muted:#667085;
+  --line:#d9e0ea;
+  --bg:#f5f7fb;
+  --card:#fff;
+  --accent:#2457d6;
+  --good:#147a4a;
+  --goodbg:#eaf8f1;
+  --warn:#9a6700;
+  --warnbg:#fff4d6;
+  --bad:#b42318;
+  --badbg:#feeceb;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;
+}
+
+.wrap{
+  max-width:1040px;
+  margin:auto;
+  padding:28px 18px 60px;
+}
+
+.hero{
+  background:linear-gradient(135deg,#163a8a,#2457d6);
+  color:white;
+  border-radius:18px;
+  padding:28px;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:36px;
+  margin:0 0 8px;
+}
+
+.hero p{
+  color:#e6ecff;
+  margin:0;
+  max-width:850px;
+}
+
+.badge{
+  display:inline-block;
+  background:#ffffff1f;
+  border:1px solid #ffffff55;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px;
+  margin:14px 0;
+  box-shadow:0 2px 8px #1822300a;
+}
+
+.step{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--accent);
+  font-weight:700;
+}
+
+.q{
+  font-weight:700;
+  margin:14px 0 7px;
+}
+
+.help,.small{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.row3{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+
+label.option{
+  display:block;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px;
+  margin:6px 0;
+}
+
+input,select{font:inherit}
+
+input[type=number],select{
+  width:100%;
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:white;
+}
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:12px 16px;
+  font-weight:700;
+  cursor:pointer;
+  background:var(--accent);
+  color:white;
+}
+
+.btn2{
+  background:white;
+  color:var(--accent);
+  border:1px solid var(--accent);
+}
+
+.pill{
+  display:inline-block;
+  border-radius:999px;
+  padding:5px 10px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.good{
+  background:var(--goodbg);
+  color:var(--good);
+}
+
+.warn{
+  background:var(--warnbg);
+  color:var(--warn);
+}
+
+.bad{
+  background:var(--badbg);
+  color:var(--bad);
+}
+
+.program{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px;
+  margin:15px 0;
+}
+
+.program h3{
+  margin:8px 0 6px;
+  font-size:21px;
+}
+
+.benefitbox{
+  border-radius:12px;
+  background:#f0f5ff;
+  border:1px solid #cbd9ff;
+  padding:14px;
+  margin:14px 0;
+}
+
+.benefitbox .amount{
+  font-size:21px;
+  font-weight:800;
+  color:#173e9c;
+}
+
+.trace{
+  border-left:4px solid var(--line);
+  padding:9px 12px;
+  margin:8px 0;
+  background:#fafbfc;
+  border-radius:7px;
+}
+
+.trace.goodt{border-color:var(--good)}
+.trace.warnt{border-color:#e0a100}
+.trace.badt{border-color:var(--bad)}
+
+.actionplan{
+  margin-top:16px;
+  border-top:1px solid var(--line);
+  padding-top:15px;
+}
+
+.actionplan h4{
+  margin:0 0 9px;
+  font-size:17px;
+}
+
+.actionplan ol{
+  padding-left:22px;
+}
+
+.actionplan li{
+  margin:8px 0;
+}
+
+.docs{
+  background:#fafbfc;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:12px;
+  margin-top:12px;
+}
+
+.src{
+  font-size:12px;
+  color:var(--muted);
+}
+
+#chatlog{
+  max-height:390px;
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:12px;
+  background:#fbfcfe;
+}
+
+.msg{
+  padding:9px 11px;
+  border-radius:10px;
+  margin:8px 0;
+}
+
+.user{
+  background:#edf3ff;
+  margin-left:12%;
+}
+
+.bot{
+  background:white;
+  border:1px solid var(--line);
+  margin-right:6%;
+}
+
+.chatrow{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+
+.chatrow input{
+  flex:1;
+  padding:11px;
+  border:1px solid var(--line);
+  border-radius:9px;
+}
+
+.method{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.method>div{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px;
+}
+
+.mode{
+  background:#eef4ff;
+  border:1px solid #c8d8ff;
+  border-radius:10px;
+  padding:10px 12px;
+  margin:10px 0;
+  font-size:13px;
+}
+
+.legend{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+
+.hidden{display:none}
+
+.footer{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:24px;
+  text-align:center;
+}
+
+@media(max-width:720px){
+  .row,.row3,.method{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:30px;
+  }
+}
 </style>
 </head>
-<body><div class="wrap">
-<div class="hero"><span class="badge">Indiana benefits screening · classroom prototype</span><h1>Qualifier</h1><p>Answer one questionnaire to identify Indiana public-benefit programs that may be worth applying for. Qualifier uses program-specific rules and official government sources; it does not make an official eligibility determination.</p></div>
 
-<div class="card"><div class="step">1 · What are you looking for?</div>
-<div class="q">Which type of benefits would you like Qualifier to screen?</div>
-<select id="benefitType">
-<option value="all">All of the above</option>
-<option value="food">Food</option>
-<option value="health">Healthcare</option>
-<option value="housing">Housing & utilities</option>
-</select>
-<p class="help">Food screens SNAP, WIC, free/reduced-price school meals, and TANF family cash assistance. Healthcare screens Medicaid and CHIP. Housing & utilities screens LIHEAP/EAP and Housing Choice Vouchers (Section 8). “All” screens every program.</p>
-</div>
+<body>
+<div class="wrap">
 
-<div class="card"><div class="step">2 · Household basics</div>
-<div class="q">Do you live in Indiana?</div>
-<label class="option"><input type="radio" name="resident" value="yes"> Yes</label>
-<label class="option"><input type="radio" name="resident" value="no"> No</label>
-<div class="row">
-<div><div class="q">Household size</div><input id="hh" type="number" min="1" max="30" value="1"></div>
-<div><div class="q">Gross monthly household income ($)</div><input id="gross" type="number" min="0" step="1" value="0"></div>
-</div>
-<div class="row">
-<div><div class="q">Income received during the most recent 3 months ($)</div><input id="threeMonth" type="number" min="0" step="1" value="0"><div class="help">Used for Indiana EAP/LIHEAP.</div></div>
-<div><div class="q">Countable cash/assets you can identify ($)</div><input id="assets" type="number" min="0" step="1" value="0"><div class="help">Do not automatically include your home or vehicle; program rules differ.</div></div>
-</div>
+<div class="hero">
+  <span class="badge">Indiana benefits screening · classroom prototype</span>
+  <h1>Qualifier</h1>
+  <p>
+    Answer one questionnaire to identify Indiana public-benefit programs
+    that may be worth applying for. Qualifier provides preliminary screening,
+    estimated benefit information when supported by official sources, and a
+    step-by-step action plan.
+  </p>
 </div>
 
-<div class="card"><div class="step">3 · People in your household</div>
-<div class="row3">
-<div><div class="q">Your age</div><input id="age" type="number" min="0" max="120" value="30"></div>
-<div><div class="q">Number of children under 19</div><input id="children" type="number" min="0" max="20" value="0"></div>
-<div><div class="q">Age of youngest child</div><input id="youngest" type="number" min="0" max="18" value="0"></div>
-</div>
-<label class="option"><input id="pregnant" type="checkbox"> Someone applying is pregnant</label>
-<label class="option"><input id="postpartum" type="checkbox"> Someone applying gave birth within the last 6 months or is breastfeeding a baby under age 1</label>
-<label class="option"><input id="disabled" type="checkbox"> Household includes a person who is blind/disabled or may qualify under disability-based rules</label>
-<label class="option"><input id="elderly" type="checkbox"> Household includes someone age 60+</label>
-<label class="option"><input id="student" type="checkbox"> Someone applying for SNAP is enrolled at least half-time in higher education</label>
+<div class="card">
+  <div class="step">1 · What are you looking for?</div>
+
+  <div class="q">
+    Which type of benefits would you like Qualifier to screen?
+  </div>
+
+  <select id="benefitType">
+    <option value="all">All of the above</option>
+    <option value="food">Food & family assistance</option>
+    <option value="health">Healthcare</option>
+    <option value="housing">Housing & utilities</option>
+  </select>
+
+  <p class="help">
+    Food & family assistance screens SNAP, WIC, free/reduced-price
+    school meals, and TANF. Healthcare screens Medicaid and CHIP.
+    Housing & utilities screens LIHEAP/EAP and Housing Choice Vouchers.
+  </p>
+
+  <div class="legend">
+    <span class="pill good">Strong potential match</span>
+    <span class="pill warn">Potential match — worth applying</span>
+    <span class="pill bad">Screening barrier</span>
+  </div>
 </div>
 
-<div class="card"><div class="step">4 · Existing benefits & family circumstances</div>
-<label class="option"><input id="snapNow" type="checkbox"> Household currently receives SNAP</label>
-<label class="option"><input id="medicaidNow" type="checkbox"> Household currently receives Medicaid</label>
-<label class="option"><input id="tanfNow" type="checkbox"> Household currently receives TANF cash assistance</label>
-<label class="option"><input id="schoolChild" type="checkbox"> Household has a child enrolled in a participating K–12 school</label>
-<label class="option"><input id="relativeChild" type="checkbox"> A child under 18 lives with a parent or qualifying relative/caretaker</label>
-<label class="option"><input id="utility" type="checkbox"> Household is responsible for home heating/electric costs, or utilities are included in rent</label>
-<label class="option"><input id="hcv" type="checkbox"> Household is seeking rental assistance / a Housing Choice Voucher</label>
+<div class="card">
+  <div class="step">2 · Household basics</div>
+
+  <div class="q">Do you live in Indiana?</div>
+
+  <label class="option">
+    <input type="radio" name="resident" value="yes"> Yes
+  </label>
+
+  <label class="option">
+    <input type="radio" name="resident" value="no"> No
+  </label>
+
+  <div class="row">
+
+    <div>
+      <div class="q">Household size</div>
+      <input id="hh" type="number" min="1" max="30" value="1">
+    </div>
+
+    <div>
+      <div class="q">Gross monthly household income ($)</div>
+      <input id="gross" type="number" min="0" step="1" value="0">
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div>
+      <div class="q">
+        Income received during the most recent 3 months ($)
+      </div>
+
+      <input id="threeMonth" type="number" min="0" step="1" value="0">
+
+      <div class="help">
+        Used for Indiana Energy Assistance Program screening.
+      </div>
+    </div>
+
+    <div>
+      <div class="q">
+        Countable cash/assets you can identify ($)
+      </div>
+
+      <input id="assets" type="number" min="0" step="1" value="0">
+
+      <div class="help">
+        Do not automatically include your home or vehicle.
+        Program resource rules differ.
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<div class="card"><button class="btn" id="run">Find programs I may qualify for</button> <button class="btn btn2" id="reset">Reset</button><p id="err" class="bad small"></p></div>
+<div class="card">
+  <div class="step">3 · People in your household</div>
+
+  <div class="row3">
+
+    <div>
+      <div class="q">Your age</div>
+      <input id="age" type="number" min="0" max="120" value="30">
+    </div>
+
+    <div>
+      <div class="q">Number of children under 19</div>
+      <input id="children" type="number" min="0" max="20" value="0">
+    </div>
+
+    <div>
+      <div class="q">Age of youngest child</div>
+      <input id="youngest" type="number" min="0" max="18" value="0">
+    </div>
+
+  </div>
+
+  <label class="option">
+    <input id="pregnant" type="checkbox">
+    Someone applying is pregnant
+  </label>
+
+  <label class="option">
+    <input id="postpartum" type="checkbox">
+    Someone applying recently gave birth or is breastfeeding a baby under age 1
+  </label>
+
+  <label class="option">
+    <input id="disabled" type="checkbox">
+    Household includes a person who is blind/disabled or may qualify under disability-based rules
+  </label>
+
+  <label class="option">
+    <input id="elderly" type="checkbox">
+    Household includes someone age 60+
+  </label>
+
+  <label class="option">
+    <input id="student" type="checkbox">
+    Someone applying for SNAP is enrolled at least half-time in higher education
+  </label>
+
+</div>
+
+<div class="card">
+  <div class="step">4 · Existing benefits & family circumstances</div>
+
+  <label class="option">
+    <input id="snapNow" type="checkbox">
+    Household currently receives SNAP
+  </label>
+
+  <label class="option">
+    <input id="medicaidNow" type="checkbox">
+    Household currently receives Medicaid
+  </label>
+
+  <label class="option">
+    <input id="tanfNow" type="checkbox">
+    Household currently receives TANF cash assistance
+  </label>
+
+  <label class="option">
+    <input id="schoolChild" type="checkbox">
+    Household has a child enrolled in a participating K–12 school
+  </label>
+
+  <label class="option">
+    <input id="relativeChild" type="checkbox">
+    A child under 18 lives with a parent or qualifying relative/caretaker
+  </label>
+
+  <label class="option">
+    <input id="utility" type="checkbox">
+    Household is responsible for home heating/electric costs,
+    or utilities are included in rent
+  </label>
+
+  <label class="option">
+    <input id="hcv" type="checkbox">
+    Household is seeking rental assistance / a Housing Choice Voucher
+  </label>
+
+</div>
+
+<div class="card">
+  <button class="btn" id="run">
+    Build my benefits action plan
+  </button>
+
+  <button class="btn btn2" id="reset">
+    Reset
+  </button>
+
+  <p id="err" class="bad small"></p>
+</div>
+
 <div id="result" class="card hidden"></div>
 
-<div class="card" id="assistant"><div class="step">Grounded benefits assistant</div><h2 style="margin-top:6px">Ask Qualifier a benefits question</h2>
-<div class="mode"><b>Grounded AI mode.</b> Qualifier retrieves only approved Indiana/federal benefit passages loaded into the server. The AI explains that evidence and your deterministic screening trace; it is instructed not to invent thresholds, exceptions, or eligibility conclusions.</div>
-<p class="help">Try “What is WIC?”, “How does CHIP work in Indiana?”, “What documents do I need for energy assistance?”, “How does Section 8 eligibility work?”, or after screening, “Why did I get these results?”</p>
-<div id="chatlog"><div class="msg bot">Ask about SNAP, Medicaid, WIC, LIHEAP/EAP, Housing Choice Vouchers, CHIP, school meals, or TANF.</div></div>
-<div class="chatrow"><input id="chat" placeholder="Ask about Indiana benefits"><button class="btn" id="ask">Ask</button></div>
+<div class="card" id="assistant">
+
+  <div class="step">Grounded benefits assistant</div>
+
+  <h2 style="margin-top:6px">
+    Ask Qualifier a benefits question
+  </h2>
+
+  <div class="mode">
+    <b>Grounded AI mode.</b>
+    Qualifier retrieves only approved Indiana/federal benefit information
+    loaded into the server. The AI can explain your screening results,
+    benefit estimates, and next steps, but it does not make the official
+    eligibility decision.
+  </div>
+
+  <p class="help">
+    Try “Why did I get these results?”, “How much SNAP could I receive?”,
+    “What should I gather before applying?”, “What is CHIP?”, or
+    “How does Section 8 work?”
+  </p>
+
+  <div id="chatlog">
+    <div class="msg bot">
+      Ask about SNAP, Medicaid, WIC, LIHEAP/EAP,
+      Housing Choice Vouchers, CHIP, school meals, or TANF.
+    </div>
+  </div>
+
+  <div class="chatrow">
+    <input id="chat" placeholder="Ask about Indiana benefits">
+    <button class="btn" id="ask">Ask</button>
+  </div>
+
 </div>
 
-<div class="card"><div class="step">Ground-truth corpus</div><h2 style="margin-top:6px">Official sources used by this version</h2>
-<p class="small">Rules are effective-dated where possible. Qualifier should be revalidated when agencies publish new standards.</p>
-<div class="small">
-<b>SNAP / TANF:</b> Indiana FSSA DFR Program Policy Manual; Indiana SNAP and TANF program pages.<br>
-<b>Medicaid / CHIP:</b> Indiana Medicaid Eligibility Guide; Indiana Health Coverage Program Policy Manual; Hoosier Healthwise / Package C materials.<br>
-<b>WIC:</b> Indiana Department of Health WIC Eligibility Requirements and 2026 income guidelines.<br>
-<b>LIHEAP/EAP:</b> Indiana IHCDA Energy Assistance Program PY2027 eligibility, required-document, application, and appeal guidance.<br>
-<b>Housing Choice Voucher:</b> IHCDA 2026 HCV Administrative Plan; IHCDA HCV program materials; HUD HCV applicant guidance and income-limit framework.<br>
-<b>School meals:</b> Indiana Department of Education 2026–27 Income Eligibility Guidelines and Direct Certification guidance.
-</div></div>
+<div class="card">
 
-<div class="card"><div class="step">Methodology & safety</div><div class="method">
-<div><b>1 · Ground truth</b><br>Government sources, not model memory.</div>
-<div><b>2 · Rules engine</b><br>Program-specific deterministic screening.</div>
-<div><b>3 · Grounded AI</b><br>Explains retrieved evidence and reason codes.</div>
-<div><b>4 · Fail closed</b><br>Unencoded/local/agency-review issues are flagged, never guessed.</div>
-</div></div>
-<div class="footer">Qualifier · Indiana multi-program benefits navigator · Official eligibility decisions are made by the administering agencies.</div>
+  <div class="step">Methodology & safety</div>
+
+  <div class="method">
+
+    <div>
+      <b>1 · Ground truth</b><br>
+      Government sources, not model memory.
+    </div>
+
+    <div>
+      <b>2 · Rules engine</b><br>
+      Program-specific deterministic screening.
+    </div>
+
+    <div>
+      <b>3 · Benefit estimate</b><br>
+      Dollar figures only where official rules support them.
+    </div>
+
+    <div>
+      <b>4 · Action plan</b><br>
+      Clear next steps for programs worth pursuing.
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  Qualifier · Indiana multi-program benefits navigator ·
+  Preliminary screening only. Official eligibility and benefit amounts
+  are determined by the administering agencies.
+</div>
+
 </div>
 
 <script>
-const $=id=>document.getElementById(id); const radio=n=>document.querySelector('input[name="'+n+'"]:checked')?.value; let last=null;
-const SNAP_GROSS=[0,1696,2292,2888,3483,4079,4675,5271,5867,6463,7059];
-const WIC=[0,2461,3337,4212,5088,5964,6839,7715,8591];
-const EAP3=[0,8389,10970,13551,16133,18714,21295,21779,22263,22747,23231];
-const SCHOOL_FREE=[0,1729,2345,2960,3575,4191,4806,5421,6037];
-const SCHOOL_REDUCED=[0,2461,3337,4212,5088,5964,6839,7715,8591];
-const TANF_GROSS=[0,457,618,778,938,1099,1259,1420,1580,1740,1901];
-const MED_ADULT=[0,1835.50,2489.20,3141.85,3795.50,4449.20];
-const MED_CHILD_A=[0,2167.90,2939.47,3710.98,4482.50,5254.07];
-const CHIP_C=[0,3391.50,4599.20,5805.85,7012.50,8220.20];
-const MED_PREG=[0,0,3841.20,4849.85,5857.50,6866.20];
-function table(a,n,add){return n<a.length?a[n]:a[a.length-1]+(n-a.length+1)*add}
-function money(x){return '$'+Math.round(x).toLocaleString()}
-function trace(status,title,body,source){return {status,title,body,source}}
-function program(id,name,status,reason,traces,apply){return {id,name,status,reason,traces,apply}}
-function chosen(id){const t=$('benefitType').value;return t==='all'||t===id}
 
-function run(){
- const resident=radio('resident'); if(!resident){$('err').textContent='Please answer whether you live in Indiana.';return}
- $('err').textContent='';
- const hh=Math.max(1,+$('hh').value||1), gross=Math.max(0,+$('gross').value||0), three=Math.max(0,+$('threeMonth').value||0), assets=Math.max(0,+$('assets').value||0);
- const age=Math.max(0,+$('age').value||0), kids=Math.max(0,+$('children').value||0);
- let out=[];
+const $ = id => document.getElementById(id);
 
- if(resident==='no'){
-   last={programs:[],summary:'This Indiana-specific version cannot screen a non-Indiana household.'}; render(); return;
- }
+const radio = name =>
+  document.querySelector('input[name="' + name + '"]:checked')?.value;
 
- if(chosen('food')){
-   let st=[],gl=table(SNAP_GROSS,hh,596), status='review';
-   if(!$('elderly').checked&&!$('disabled').checked && gross>gl){status='barrier';st.push(trace('bad','Gross-income screen',money(gross)+' is above the published SNAP gross-income figure of '+money(gl)+' for household size '+hh+'.','Indiana FSSA SNAP Income'))}
-   else st.push(trace('good','Gross-income pathway','Reported income does not create an encoded gross-income barrier in this preliminary screen.','Indiana FSSA SNAP Income'));
-   st.push(trace('warn','Full SNAP determination','Net-income deductions, household composition, student/work rules, immigration classification, and resource treatment can require additional verified facts.','Indiana FSSA DFR Program Policy Manual'));
-   out.push(program('snap','SNAP',status,status==='barrier'?'An encoded SNAP screening barrier was identified.':'SNAP may be worth applying for; some rules still require verification.',st,'Indiana FSSA Benefits Portal'));
+let last = null;
 
-   let w=[],wicCat=$('pregnant').checked||$('postpartum').checked||kids>0, adjunct=$('snapNow').checked||$('medicaidNow').checked||$('tanfNow').checked, wl=table(WIC,hh,876);
-   if(!wicCat) out.push(program('wic','WIC','barrier','No WIC categorical group was identified.',[trace('bad','Categorical eligibility','WIC serves pregnant, breastfeeding/postpartum people, infants, and children under 5.','Indiana Department of Health WIC')],'Indiana WIC clinic'));
-   else {w.push(trace('good','Categorical pathway','The household reports a pregnancy/postpartum circumstance or child who may fall within a WIC category.','Indiana Department of Health WIC'));
-     if(adjunct) w.push(trace('good','Adjunct income eligibility','Indiana states families receiving Medicaid, SNAP, or TANF are income-eligible for WIC.','Indiana Department of Health WIC'));
-     else if(gross<=wl) w.push(trace('good','Income screen',money(gross)+' is at or below the 2026 WIC monthly guideline of '+money(wl)+' for household size '+hh+'.','Indiana Department of Health WIC 2026 Income Guidelines'));
-     else w.push(trace('bad','Income screen',money(gross)+' is above the 2026 WIC monthly guideline of '+money(wl)+' for household size '+hh+'.','Indiana Department of Health WIC 2026 Income Guidelines'));
-     w.push(trace('warn','Nutritional-risk assessment','A WIC health professional must determine nutritional risk at certification; Qualifier cannot determine this from the questionnaire.','Indiana Department of Health WIC'));
-     out.push(program('wic','WIC',(!adjunct&&gross>wl)?'barrier':'review','Income/categorical screening completed; nutritional-risk certification remains.',w,'Indiana WIC clinic'));
-   }
+/* ----------------------------------------------------
+   CURRENT SCREENING TABLES
+---------------------------------------------------- */
 
-   if($('schoolChild').checked){
-     let sf=table(SCHOOL_FREE,hh,616), sr=table(SCHOOL_REDUCED,hh,876), s=[];
-     if($('snapNow').checked||$('tanfNow').checked){s.push(trace('good','Direct certification pathway','SNAP/TANF participation can support direct certification for school meals.','Indiana Department of Education Direct Certification'));out.push(program('school','Free / Reduced-Price School Meals','likely','A direct-certification pathway is reported.',s,'Child’s school / school nutrition office'))}
-     else if(gross<=sf){s.push(trace('good','Free-meal income guideline',money(gross)+' is at or below '+money(sf)+' monthly for household size '+hh+' under the 2026–27 free-meal guideline.','Indiana DOE 2026–27 Income Eligibility Guidelines'));out.push(program('school','Free / Reduced-Price School Meals','likely','Income falls within the published free-meal guideline.',s,'Child’s school / school nutrition office'))}
-     else if(gross<=sr){s.push(trace('good','Reduced-price guideline',money(gross)+' is at or below '+money(sr)+' monthly for household size '+hh+' under the 2026–27 reduced-price guideline.','Indiana DOE 2026–27 Income Eligibility Guidelines'));out.push(program('school','Free / Reduced-Price School Meals','likely','Income falls within the published reduced-price guideline.',s,'Child’s school / school nutrition office'))}
-     else out.push(program('school','Free / Reduced-Price School Meals','barrier','Reported income is above the published income guidelines and no encoded direct-certification pathway was reported.',[trace('bad','Income screen',money(gross)+' is above the reduced-price monthly guideline of '+money(sr)+'.','Indiana DOE 2026–27 Income Eligibility Guidelines')],'Child’s school / school nutrition office'));
-   }
+/* FY2027 Indiana SNAP */
+const SNAP_GROSS = [
+  0,
+  1729,
+  2345,
+  2960,
+  3575,
+  4191,
+  4806,
+  5421,
+  6037
+];
 
-   let tg=table(TANF_GROSS,hh,161),tt=[];
-   if(!$('relativeChild').checked) out.push(program('tanf','TANF Cash Assistance','barrier','No child-under-18 parent/relative caretaker pathway was reported.',[trace('bad','Family category','Indiana TANF cash assistance is for qualifying families with children under 18 living with a parent or qualifying relative.','Indiana FSSA TANF')],'Indiana FSSA Benefits Portal'));
-   else if(gross>tg) out.push(program('tanf','TANF Cash Assistance','barrier','Reported gross income exceeds the published TANF gross standard.',[trace('bad','Gross-income standard',money(gross)+' exceeds '+money(tg)+' for assistance-group size '+hh+'.','Indiana FSSA TANF')],'Indiana FSSA Benefits Portal'));
-   else {tt.push(trace('good','Gross-income standard',money(gross)+' is not above the published TANF gross standard of '+money(tg)+'.','Indiana FSSA TANF')); if(assets>1000)tt.push(trace('warn','Asset review','Reported assets exceed $1,000, but Indiana has exclusions for the home and certain vehicle equity; item-level review is required.','Indiana FSSA TANF / Policy Manual §2615.60.15'));tt.push(trace('warn','Remaining TANF rules','Net income, citizenship/immigration, IMPACT/work, child-support assignment and other nonfinancial rules still require verification.','Indiana FSSA TANF / DFR Policy Manual'));out.push(program('tanf','TANF Cash Assistance','review','The basic family/gross-income pathway may fit, but additional TANF rules remain.',tt,'Indiana FSSA Benefits Portal'))}
- }
+const SNAP_MAX = [
+  0,
+  306,
+  562,
+  808,
+  1023,
+  1217,
+  1463,
+  1616,
+  1841
+];
 
- if(chosen('health')){
-   let m=[];
-   if($('pregnant').checked){
-     let lim=table(MED_PREG,Math.max(2,hh),1008.65);
-     m.push(program('medpreg','Medicaid — pregnancy coverage',gross<=lim?'likely':'barrier',gross<=lim?'Income is within the published pregnancy guideline.':'Income is above the published pregnancy guideline.',[trace(gross<=lim?'good':'bad','Pregnancy income screen',money(gross)+(gross<=lim?' is at or below ':' is above ')+money(lim)+' for the applicable family-size screen.','Indiana Medicaid Eligibility Guide — effective March 1, 2026')],'Indiana FSSA Benefits Portal'));
-   }
-   if(kids>0){
-     let a=table(MED_CHILD_A,hh,771.51), c=table(CHIP_C,hh,1207.70);
-     if(gross<=a) m.push(program('childmed','Children’s Medicaid / Hoosier Healthwise Package A','likely','Reported income is within the published Package A child guideline.',[trace('good','Child health coverage',money(gross)+' is at or below '+money(a)+' for family size '+hh+'.','Indiana Hoosier Healthwise 2026 brochure')],'Indiana FSSA Benefits Portal'));
-     else if(gross<=c) m.push(program('chip','CHIP / Hoosier Healthwise Package C','likely','Reported income is above the Package A figure but within the published Package C/CHIP ceiling.',[trace('good','CHIP pathway',money(gross)+' is at or below '+money(c)+' for family size '+hh+'. Package C can involve premiums/copays.','Indiana Hoosier Healthwise 2026 brochure')],'Indiana FSSA Benefits Portal'));
-     else m.push(program('chip','Children’s Medicaid / CHIP','barrier','Reported income is above the published child Package C ceiling in this preliminary screen.',[trace('bad','Child coverage income screen',money(gross)+' is above '+money(c)+' for family size '+hh+'.','Indiana Hoosier Healthwise 2026 brochure')],'Indiana FSSA Benefits Portal'));
-   }
-   if(age>=19 && !$('disabled').checked){
-     let lim=table(MED_ADULT,hh,653.70);
-     m.push(program('hip','Medicaid — Healthy Indiana Plan',gross<=lim?'likely':'barrier',gross<=lim?'Reported income is within the published adult guideline.':'Reported income is above the published adult guideline.',[trace(gross<=lim?'good':'bad','Adult income screen',money(gross)+(gross<=lim?' is at or below ':' is above ')+money(lim)+' for household size '+hh+'.','Indiana Medicaid Eligibility Guide — effective March 1, 2026')],'Indiana FSSA Benefits Portal'));
-   }
-   if($('disabled').checked||$('elderly').checked) m.push(program('abd','Medicaid — aged/blind/disabled pathway','review','Aged/blind/disabled Medicaid uses additional income, asset, disability and institutional/waiver rules that require a separate determination.',[trace('warn','ABD pathway','Qualifier identified an aged/blind/disabled pathway but does not collapse these distinct Medicaid categories into one threshold.','Indiana Medicaid Eligibility Guide / IHCP Policy Manual')],'Indiana FSSA Benefits Portal'));
-   out.push(...m);
- }
+/* Indiana 2026 WIC */
+const WIC = [
+  0,
+  2461,
+  3337,
+  4212,
+  5088,
+  5964,
+  6839,
+  7715,
+  8591
+];
 
- if(chosen('housing')){
-   if($('utility').checked){
-     let lim=table(EAP3,hh,484);
-     out.push(program('eap','LIHEAP / Indiana Energy Assistance Program',three<=lim?'likely':'barrier',three<=lim?'Recent three-month income is within the PY2027 guideline.':'Recent three-month income is above the PY2027 guideline.',[trace(three<=lim?'good':'bad','Three-month income screen',money(three)+(three<=lim?' is at or below ':' is above ')+money(lim)+' for household size '+hh+'.','Indiana IHCDA EAP PY2027'),trace('warn','Application timing','PY2027 applications run October 1, 2026 through April 30, 2027; local service providers make eligibility decisions.','Indiana IHCDA EAP PY2027')],'Indiana IHCDA EAP / Local Service Provider'));
-   }
-   if($('hcv').checked){
-     out.push(program('hcv','Housing Choice Voucher (Section 8)','review','A location-specific PHA/HUD income-limit and waiting-list check is required.',[trace('warn','Area-specific income limit','HCV admission uses HUD income limits that vary by area and family size; a single statewide threshold would be inaccurate.','IHCDA 2026 HCV Administrative Plan / HUD'),trace('warn','Waiting list','Voucher availability depends on the administering PHA/IHCDA waiting list and available vouchers. Eligibility does not guarantee immediate assistance.','HUD HCV Applicant Guidance')],'IHCDA / applicable Public Housing Agency'));
-   }
- }
+/* Indiana EAP PY2027 – most recent 3 months */
+const EAP3 = [
+  0,
+  8389,
+  10970,
+  13551,
+  16133,
+  18714,
+  21295,
+  21779,
+  22263,
+  22747,
+  23231
+];
 
- last={programs:out,summary:'Qualifier screened '+out.length+' program pathways using the selected category and the facts entered.'}; render();
+/* School meals 2026–27 */
+const SCHOOL_FREE = [
+  0,
+  1729,
+  2345,
+  2960,
+  3575,
+  4191,
+  4806,
+  5421,
+  6037
+];
+
+const SCHOOL_REDUCED = [
+  0,
+  2461,
+  3337,
+  4212,
+  5088,
+  5964,
+  6839,
+  7715,
+  8591
+];
+
+/* TANF */
+const TANF_GROSS = [
+  0,
+  457,
+  618,
+  778,
+  938,
+  1099,
+  1259,
+  1420,
+  1580,
+  1740,
+  1901
+];
+
+const TANF_MAX = [
+  0,
+  248,
+  409,
+  513,
+  617,
+  721,
+  825,
+  929,
+  1033,
+  1137,
+  1241
+];
+
+/* Medicaid screening figures retained from V7 */
+const MED_ADULT = [
+  0,
+  1835.50,
+  2489.20,
+  3141.85,
+  3795.50,
+  4449.20
+];
+
+const MED_CHILD_A = [
+  0,
+  2167.90,
+  2939.47,
+  3710.98,
+  4482.50,
+  5254.07
+];
+
+const CHIP_C = [
+  0,
+  3391.50,
+  4599.20,
+  5805.85,
+  7012.50,
+  8220.20
+];
+
+const MED_PREG = [
+  0,
+  0,
+  3841.20,
+  4849.85,
+  5857.50,
+  6866.20
+];
+
+
+/* ----------------------------------------------------
+   HELPERS
+---------------------------------------------------- */
+
+function table(array, n, additional) {
+
+  if (n < array.length) {
+    return array[n];
+  }
+
+  return array[array.length - 1] +
+    (n - array.length + 1) * additional;
 }
 
-function render(){
- const r=$('result');r.classList.remove('hidden');let h='<h2>Your preliminary program matches</h2><p>'+last.summary+'</p>';
- if(!last.programs.length)h+='<p>No program pathway was generated from the selected category and answers.</p>';
- last.programs.forEach(p=>{let cls=p.status==='likely'?'good':p.status==='barrier'?'bad':'warn';let label=p.status==='likely'?'Potential match':p.status==='barrier'?'Screening barrier':'Needs verification';h+='<div class="program"><span class="pill '+cls+'">'+label+'</span><h3>'+p.name+'</h3><p>'+p.reason+'</p>';p.traces.forEach(t=>{let c=t.status==='good'?'goodt':t.status==='bad'?'badt':'warnt';h+='<div class="trace '+c+'"><b>'+t.title+'</b><br>'+t.body+'<div class="src">Ground truth: '+t.source+'</div></div>'});h+='<p class="small"><b>Next step:</b> '+p.apply+'</p></div>'});
- h+='<p class="small"><b>Important:</b> These are screening results, not official eligibility determinations. Program agencies may require facts or calculations not represented here.</p>';r.innerHTML=h;r.scrollIntoView({behavior:'smooth'});
+function money(x) {
+  return "$" + Math.round(x).toLocaleString();
 }
-$('run').onclick=run;$('reset').onclick=()=>location.reload();
 
-function localFallback(q){
- let s=q.toLowerCase();
- const answers=[
-  [['wic'],'Indiana WIC serves qualifying pregnant, breastfeeding/postpartum people, infants, and children under 5. Indiana also requires income eligibility and a nutritional-risk assessment; Medicaid, SNAP, or TANF participation can establish WIC income eligibility.'],
-  [['chip','package c'],'In Indiana, CHIP is Hoosier Healthwise Package C for children under 19. It serves children at higher family incomes than Medicaid Package A and can require premiums and copays.'],
-  [['liheap','energy','eap'],'Indiana calls LIHEAP the Energy Assistance Program (EAP). PY2027 uses income from the most recent three months and is administered through local service providers.'],
-  [['section 8','voucher','housing choice'],'Housing Choice Voucher eligibility uses HUD area-specific income limits and local PHA/IHCDA administration. Waiting-list status and voucher availability are separate from basic income eligibility.'],
-  [['school lunch','school meal','reduced-price','free lunch'],'Indiana school meal eligibility can be established through 2026–27 income guidelines or direct certification pathways.'],
-  [['tanf'],'Indiana TANF provides cash assistance to qualifying families with children under 18 and applies income, asset, nonfinancial, work/IMPACT and other rules.'],
-  [['medicaid','hip','health coverage'],'Indiana Medicaid eligibility depends on the coverage group. Children, pregnant individuals, adults, and aged/blind/disabled applicants have different rules and income standards.'],
-  [['snap'],'Indiana SNAP uses household, income, resource, student, work and other eligibility rules. The official determination is made by FSSA.']
- ];
- for(const [keys,a] of answers)if(keys.some(k=>s.includes(k)))return a;
- return 'I cannot answer that reliably from the local fallback knowledge. The live grounded assistant should retrieve an approved passage; if it cannot, Qualifier should not guess.';
+function trace(status, title, body, source) {
+
+  return {
+    status,
+    title,
+    body,
+    source
+  };
 }
-async function ask(){
- let q=$('chat').value.trim();if(!q)return;let log=$('chatlog');log.innerHTML+='<div class="msg user">'+q.replace(/[<>]/g,'')+'</div>';$('chat').value='';let wait=document.createElement('div');wait.className='msg bot';wait.textContent='Checking approved sources…';log.appendChild(wait);log.scrollTop=log.scrollHeight;
- try{
-   let screening=last||null;let resp=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,screening})});
-   let data=await resp.json().catch(()=>({}));if(!resp.ok)throw new Error(data.detail||data.error||('HTTP '+resp.status));
-   wait.innerHTML=(data.answer||'No supported answer returned.').replace(/\n/g,'<br>')+(data.sources&&data.sources.length?'<div class="src">Sources: '+data.sources.map(x=>x.title).join('; ')+'</div>':'');
- }catch(e){wait.innerHTML='<b>Local grounded fallback:</b> '+localFallback(q)+'<div class="src">The live grounded service is temporarily unavailable.</div>'}
- log.scrollTop=log.scrollHeight;
+
+function program(
+  id,
+  name,
+  status,
+  reason,
+  traces,
+  benefit,
+  benefitNote,
+  steps,
+  documents
+) {
+
+  return {
+    id,
+    name,
+    status,
+    reason,
+    traces,
+    benefit,
+    benefitNote,
+    steps,
+    documents
+  };
 }
-$('ask').onclick=ask;$('chat').addEventListener('keydown',e=>{if(e.key==='Enter')ask()});
-</script></body></html>
+
+function chosen(category) {
+
+  const selected = $("benefitType").value;
+
+  return selected === "all" || selected === category;
+}
+
+
+/* ----------------------------------------------------
+   MAIN SCREENING
+---------------------------------------------------- */
+
+function run() {
+
+  const resident = radio("resident");
+
+  if (!resident) {
+
+    $("err").textContent =
+      "Please answer whether you live in Indiana.";
+
+    return;
+  }
+
+  $("err").textContent = "";
+
+  const hh =
+    Math.max(1, +$("hh").value || 1);
+
+  const gross =
+    Math.max(0, +$("gross").value || 0);
+
+  const three =
+    Math.max(0, +$("threeMonth").value || 0);
+
+  const assets =
+    Math.max(0, +$("assets").value || 0);
+
+  const age =
+    Math.max(0, +$("age").value || 0);
+
+  const kids =
+    Math.max(0, +$("children").value || 0);
+
+  const youngest =
+    Math.max(0, +$("youngest").value || 0);
+
+  let out = [];
+
+  if (resident === "no") {
+
+    last = {
+      programs: [],
+      summary:
+        "Qualifier is currently limited to Indiana residents."
+    };
+
+    render();
+    return;
+  }
+
+
+  /* ==================================================
+     SNAP
+  ================================================== */
+
+  if (chosen("food")) {
+
+    let traces = [];
+
+    const grossLimit =
+      table(SNAP_GROSS, hh, 616);
+
+    const maxBenefit =
+      table(SNAP_MAX, hh, 225);
+
+    let status = "potential";
+
+    if (
+      !$("elderly").checked &&
+      !$("disabled").checked &&
+      gross > grossLimit
+    ) {
+
+      status = "barrier";
+
+      traces.push(
+        trace(
+          "bad",
+          "Gross-income screen",
+          money(gross) +
+          " is above the published SNAP gross-income figure of " +
+          money(grossLimit) +
+          " for a household of " +
+          hh +
+          ".",
+          "Indiana FSSA SNAP Income"
+        )
+      );
+
+    } else {
+
+      if (
+        gross <= grossLimit &&
+        !$("student").checked
+      ) {
+
+        status = "strong";
+      }
+
+      traces.push(
+        trace(
+          "good",
+          "Income pathway",
+          "Your reported income does not create an encoded gross-income barrier in this preliminary SNAP screen.",
+          "Indiana FSSA SNAP Income"
+        )
+      );
+
+      if ($("student").checked) {
+
+        traces.push(
+          trace(
+            "warn",
+            "Student rule",
+            "Because a household member applying for SNAP is enrolled at least half-time in higher education, a student exemption may need to be established.",
+            "Indiana FSSA SNAP / DFR Policy Manual"
+          )
+        );
+      }
+
+      traces.push(
+        trace(
+          "warn",
+          "Final benefit calculation",
+          "Actual SNAP eligibility and the monthly allotment depend on net income, deductions, household composition and other program rules.",
+          "Indiana FSSA SNAP Income / Policy Manual"
+        )
+      );
+    }
+
+    out.push(
+      program(
+        "snap",
+        "SNAP",
+        status,
+        status === "barrier"
+          ? "The preliminary screen identified an income barrier."
+          : "Your answers indicate that a SNAP application may be worthwhile.",
+        traces,
+        status === "barrier"
+          ? "No benefit estimate"
+          : "Up to " + money(maxBenefit) + " per month",
+        status === "barrier"
+          ? "No estimate is shown because the preliminary screen identified a barrier."
+          : "This is the current maximum allotment for a household of " +
+            hh +
+            ". It is not a prediction of your actual benefit. Actual SNAP benefits generally decrease as countable net income increases.",
+        [
+          "Gather proof of identity, Indiana residency, household members and income.",
+          "Gather documentation of potentially deductible expenses such as housing, dependent care, qualifying child support, and applicable medical expenses.",
+          "Submit a SNAP application through the Indiana FSSA Benefits Portal or your local Division of Family Resources office.",
+          "Complete any required interview and provide requested verification.",
+          "Review the official eligibility decision and benefit amount issued by FSSA."
+        ],
+        [
+          "Identification",
+          "Proof of Indiana residency",
+          "Income/pay information",
+          "Household-member information",
+          "Housing and utility expenses",
+          "Dependent-care expenses, if applicable",
+          "Qualifying medical expenses, if applicable"
+        ]
+      )
+    );
+
+
+    /* ==================================================
+       WIC
+    ================================================== */
+
+    const wicCategory =
+      $("pregnant").checked ||
+      $("postpartum").checked ||
+      kids > 0;
+
+    const adjunct =
+      $("snapNow").checked ||
+      $("medicaidNow").checked ||
+      $("tanfNow").checked;
+
+    const wicHH =
+      $("pregnant").checked
+        ? hh + 1
+        : hh;
+
+    const wicLimit =
+      table(WIC, wicHH, 876);
+
+    let wicTraces = [];
+
+    if (!wicCategory) {
+
+      out.push(
+        program(
+          "wic",
+          "WIC",
+          "barrier",
+          "The questionnaire did not identify a WIC categorical eligibility group.",
+          [
+            trace(
+              "bad",
+              "Categorical eligibility",
+              "WIC serves qualifying pregnant, breastfeeding/postpartum participants, infants, and children under age five.",
+              "Indiana Department of Health WIC"
+            )
+          ],
+          "No benefit estimate",
+          "",
+          [],
+          []
+        )
+      );
+
+    } else {
+
+      let wicStatus = "potential";
+
+      wicTraces.push(
+        trace(
+          "good",
+          "Categorical pathway",
+          "Your household reports a pregnancy, postpartum circumstance, infant, or child who may fall within a WIC category.",
+          "Indiana Department of Health WIC"
+        )
+      );
+
+      if (adjunct) {
+
+        wicStatus = "strong";
+
+        wicTraces.push(
+          trace(
+            "good",
+            "Income pathway",
+            "Indiana states that families receiving Medicaid, SNAP, or TANF are income-eligible for WIC.",
+            "Indiana Department of Health WIC"
+          )
+        );
+
+      } else if (gross <= wicLimit) {
+
+        wicStatus = "strong";
+
+        wicTraces.push(
+          trace(
+            "good",
+            "Income screen",
+            money(gross) +
+            " is at or below the published monthly WIC guideline of " +
+            money(wicLimit) +
+            " for the applicable household-size screen.",
+            "Indiana Department of Health WIC 2026 Guidelines"
+          )
+        );
+
+      } else {
+
+        wicStatus = "barrier";
+
+        wicTraces.push(
+          trace(
+            "bad",
+            "Income screen",
+            money(gross) +
+            " is above the published WIC monthly guideline of " +
+            money(wicLimit) +
+            ".",
+            "Indiana Department of Health WIC"
+          )
+        );
+      }
+
+      if (wicStatus !== "barrier") {
+
+        wicTraces.push(
+          trace(
+            "warn",
+            "Nutrition assessment",
+            "WIC certification includes a health and dietary assessment to determine nutritional risk.",
+            "Indiana Department of Health WIC"
+          )
+        );
+      }
+
+      let wicBenefit =
+        "Supplemental WIC food package";
+
+      let wicNote =
+        "The total value varies by participant category and prescribed food package.";
+
+      if ($("pregnant").checked) {
+
+        wicBenefit =
+          "$48/month fruit & vegetable benefit + WIC food package";
+
+        wicNote =
+          "Indiana currently lists a $48 monthly fruit-and-vegetable cash-value benefit for pregnant and postpartum participants. This is only one component of the WIC food package.";
+
+      } else if ($("postpartum").checked) {
+
+        wicBenefit =
+          "$48–$52/month fruit & vegetable benefit + WIC food package";
+
+        wicNote =
+          "Indiana currently lists $48 for pregnant/postpartum participants and $52 for breastfeeding participants. Other WIC foods are provided in addition to this component.";
+
+      } else if (kids > 0 && youngest < 5) {
+
+        wicBenefit =
+          "$26/month fruit & vegetable benefit per qualifying child + WIC food package";
+
+        wicNote =
+          "Indiana currently lists a $26 monthly fruit-and-vegetable cash-value benefit for children. Other prescribed WIC foods are provided in addition to this component.";
+      }
+
+      out.push(
+        program(
+          "wic",
+          "WIC",
+          wicStatus,
+          wicStatus === "barrier"
+            ? "The preliminary screen identified an income barrier."
+            : "Your household appears to have a WIC pathway worth pursuing.",
+          wicTraces,
+          wicStatus === "barrier"
+            ? "No benefit estimate"
+            : wicBenefit,
+          wicStatus === "barrier"
+            ? ""
+            : wicNote,
+          [
+            "Contact an Indiana WIC clinic and request a certification appointment.",
+            "Gather identification, Indiana residency information, household income information, and documentation of Medicaid/SNAP/TANF participation if applicable.",
+            "Attend the WIC appointment.",
+            "Complete the health and nutrition assessment required for WIC certification.",
+            "If approved, review your prescribed food benefits and use the IN WIC app or clinic materials to manage benefits."
+          ],
+          [
+            "Identification",
+            "Proof of Indiana residency",
+            "Income information",
+            "Medicaid/SNAP/TANF information, if applicable",
+            "Relevant pregnancy or child information"
+          ]
+        )
+      );
+    }
+
+
+    /* ==================================================
+       SCHOOL MEALS
+    ================================================== */
+
+    if ($("schoolChild").checked) {
+
+      const freeLimit =
+        table(SCHOOL_FREE, hh, 616);
+
+      const reducedLimit =
+        table(SCHOOL_REDUCED, hh, 876);
+
+      let schoolStatus = "barrier";
+      let schoolReason = "";
+      let schoolBenefit = "";
+      let schoolTraces = [];
+
+      if (
+        $("snapNow").checked ||
+        $("tanfNow").checked
+      ) {
+
+        schoolStatus = "strong";
+
+        schoolReason =
+          "Your household reports a benefit that may support direct certification.";
+
+        schoolBenefit =
+          "Free school meals";
+
+        schoolTraces.push(
+          trace(
+            "good",
+            "Direct-certification pathway",
+            "SNAP or TANF participation can support direct certification for school meals.",
+            "Indiana Department of Education"
+          )
+        );
+
+      } else if (gross <= freeLimit) {
+
+        schoolStatus = "strong";
+
+        schoolReason =
+          "Your reported income falls within the published free-meal guideline.";
+
+        schoolBenefit =
+          "Free school breakfast/lunch at participating school";
+
+        schoolTraces.push(
+          trace(
+            "good",
+            "Free-meal income guideline",
+            money(gross) +
+            " is at or below " +
+            money(freeLimit) +
+            " per month for household size " +
+            hh +
+            ".",
+            "Indiana DOE 2026–27 Income Eligibility Guidelines"
+          )
+        );
+
+      } else if (gross <= reducedLimit) {
+
+        schoolStatus = "strong";
+
+        schoolReason =
+          "Your reported income falls within the published reduced-price guideline.";
+
+        schoolBenefit =
+          "Reduced-price school meals";
+
+        schoolTraces.push(
+          trace(
+            "good",
+            "Reduced-price guideline",
+            money(gross) +
+            " is at or below " +
+            money(reducedLimit) +
+            " per month for household size " +
+            hh +
+            ".",
+            "Indiana DOE 2026–27 Income Eligibility Guidelines"
+          )
+        );
+
+      } else {
+
+        schoolReason =
+          "Reported income is above the published reduced-price guideline and no encoded direct-certification pathway was reported.";
+
+        schoolBenefit =
+          "No benefit estimate";
+
+        schoolTraces.push(
+          trace(
+            "bad",
+            "Income screen",
+            money(gross) +
+            " is above the reduced-price monthly guideline of " +
+            money(reducedLimit) +
+            ".",
+            "Indiana DOE 2026–27 Income Eligibility Guidelines"
+          )
+        );
+      }
+
+      out.push(
+        program(
+          "school",
+          "Free / Reduced-Price School Meals",
+          schoolStatus,
+          schoolReason,
+          schoolTraces,
+          schoolBenefit,
+          schoolStatus === "barrier"
+            ? ""
+            : "Dollar savings depend on the meals offered and prices charged by the child's school, so Qualifier does not invent a monthly cash equivalent.",
+          [
+            "Check whether your child has already been directly certified by the school.",
+            "If not directly certified, request or complete the school's household meal-benefit application.",
+            "Provide household and income information requested by the school.",
+            "Review the school's eligibility notice.",
+            "If approved, confirm when free or reduced-price meal status begins."
+          ],
+          [
+            "Household-member information",
+            "Income information if an application is required",
+            "SNAP/TANF information if relevant to direct certification"
+          ]
+        )
+      );
+    }
+
+
+    /* ==================================================
+       TANF
+    ================================================== */
+
+    const tanfGross =
+      table(TANF_GROSS, hh, 161);
+
+    const tanfMax =
+      table(TANF_MAX, hh, 104);
+
+    let tanfTraces = [];
+
+    if (!$("relativeChild").checked) {
+
+      out.push(
+        program(
+          "tanf",
+          "TANF Cash Assistance",
+          "barrier",
+          "The questionnaire did not identify the required family-with-child caretaker pathway.",
+          [
+            trace(
+              "bad",
+              "Family category",
+              "Indiana TANF cash assistance serves qualifying families with children under 18 living with a parent or qualifying relative.",
+              "Indiana FSSA TANF"
+            )
+          ],
+          "No benefit estimate",
+          "",
+          [],
+          []
+        )
+      );
+
+    } else if (gross > tanfGross) {
+
+      out.push(
+        program(
+          "tanf",
+          "TANF Cash Assistance",
+          "barrier",
+          "Reported gross income exceeds the published TANF gross-income standard.",
+          [
+            trace(
+              "bad",
+              "Gross-income standard",
+              money(gross) +
+              " exceeds " +
+              money(tanfGross) +
+              " for assistance-group size " +
+              hh +
+              ".",
+              "Indiana FSSA TANF"
+            )
+          ],
+          "No benefit estimate",
+          "",
+          [],
+          []
+        )
+      );
+
+    } else {
+
+      tanfTraces.push(
+        trace(
+          "good",
+          "Gross-income pathway",
+          money(gross) +
+          " is not above the published TANF gross-income standard of " +
+          money(tanfGross) +
+          ".",
+          "Indiana FSSA TANF"
+        )
+      );
+
+      if (assets > 1000) {
+
+        tanfTraces.push(
+          trace(
+            "warn",
+            "Resource review",
+            "Reported assets may require item-level review because TANF resource rules include exclusions and classifications.",
+            "Indiana FSSA TANF / Policy Manual"
+          )
+        );
+      }
+
+      tanfTraces.push(
+        trace(
+          "warn",
+          "Other TANF requirements",
+          "TANF also applies net-income and nonfinancial requirements, including applicable work/IMPACT and child-support rules.",
+          "Indiana FSSA TANF"
+        )
+      );
+
+      out.push(
+        program(
+          "tanf",
+          "TANF Cash Assistance",
+          "potential",
+          "Your household has a TANF pathway that appears worth pursuing.",
+          tanfTraces,
+          "Up to " + money(tanfMax) + " per month",
+          "This is Indiana's published maximum monthly TANF payment for an assistance group of " +
+            hh +
+            ". The actual payment depends on countable family income and the official TANF calculation.",
+          [
+            "Gather household, child, income, resource and identity information.",
+            "Apply for TANF through the Indiana FSSA Benefits Portal or a local DFR office.",
+            "Complete any required interview and verification.",
+            "Complete applicable TANF employment/IMPACT requirements if instructed by FSSA.",
+            "Respond to child-support cooperation requirements if applicable.",
+            "Review FSSA's official eligibility and cash-assistance calculation."
+          ],
+          [
+            "Identification",
+            "Social Security information",
+            "Proof of Indiana residency",
+            "Child/household information",
+            "Income documentation",
+            "Resource information",
+            "Child-support information, if applicable"
+          ]
+        )
+      );
+    }
+  }
+
+
+  /* ==================================================
+     HEALTHCARE
+  ================================================== */
+
+  if (chosen("health")) {
+
+    if ($("pregnant").checked) {
+
+      const limit =
+        table(
+          MED_PREG,
+          Math.max(2, hh),
+          1008.65
+        );
+
+      const ok =
+        gross <= limit;
+
+      out.push(
+        program(
+          "medpreg",
+          "Medicaid — Pregnancy Coverage",
+          ok ? "strong" : "barrier",
+          ok
+            ? "Your reported income is within the encoded pregnancy-coverage guideline."
+            : "Reported income is above the encoded pregnancy guideline.",
+          [
+            trace(
+              ok ? "good" : "bad",
+              "Pregnancy income screen",
+              money(gross) +
+              (ok ? " is at or below " : " is above ") +
+              money(limit) +
+              ".",
+              "Indiana Medicaid Eligibility Guide"
+            )
+          ],
+          ok
+            ? "Comprehensive health coverage"
+            : "No benefit estimate",
+          ok
+            ? "Medicaid is health insurance rather than a cash payment. Qualifier does not convert medical coverage into an invented dollar value."
+            : "",
+          [
+            "Gather identity, Indiana residency, household, pregnancy and income information.",
+            "Submit an Indiana health coverage application through FSSA.",
+            "Provide requested verification.",
+            "Review the official eligibility determination and effective coverage date.",
+            "If approved, review plan enrollment and covered-service information."
+          ],
+          [
+            "Identification",
+            "Indiana residency information",
+            "Income information",
+            "Pregnancy information",
+            "Household information"
+          ]
+        )
+      );
+    }
+
+
+    if (kids > 0) {
+
+      const packageA =
+        table(
+          MED_CHILD_A,
+          hh,
+          771.51
+        );
+
+      const packageC =
+        table(
+          CHIP_C,
+          hh,
+          1207.70
+        );
+
+      if (gross <= packageA) {
+
+        out.push(
+          program(
+            "childmed",
+            "Children's Medicaid / Hoosier Healthwise",
+            "strong",
+            "Reported income falls within the encoded child Medicaid guideline.",
+            [
+              trace(
+                "good",
+                "Child health coverage",
+                money(gross) +
+                " is at or below " +
+                money(packageA) +
+                " for the encoded household-size screen.",
+                "Indiana Medicaid / Hoosier Healthwise"
+              )
+            ],
+            "Comprehensive health coverage for qualifying child",
+            "This is health insurance rather than a cash payment. Qualifier therefore does not assign an invented monthly dollar value.",
+            [
+              "Gather child, household, identity, residency and income information.",
+              "Submit an Indiana health coverage application through FSSA.",
+              "Provide any requested verification.",
+              "Review the official coverage determination.",
+              "If approved, review managed-care enrollment and benefits."
+            ],
+            [
+              "Child identity information",
+              "Household information",
+              "Indiana residency information",
+              "Income information"
+            ]
+          )
+        );
+
+      } else if (gross <= packageC) {
+
+        out.push(
+          program(
+            "chip",
+            "CHIP / Hoosier Healthwise Package C",
+            "strong",
+            "Reported income falls within the encoded CHIP / Package C pathway.",
+            [
+              trace(
+                "good",
+                "CHIP pathway",
+                money(gross) +
+                " is at or below " +
+                money(packageC) +
+                " for the encoded family-size screen.",
+                "Indiana Hoosier Healthwise"
+              )
+            ],
+            "Comprehensive child health coverage",
+            "Package C is health insurance rather than cash assistance and may involve premiums or copayments. Qualifier does not invent a cash equivalent.",
+            [
+              "Gather child, household, identity, residency and income information.",
+              "Apply for Indiana health coverage through FSSA.",
+              "Provide requested verification.",
+              "Review whether the child is placed in Package C and whether a premium applies.",
+              "Complete enrollment steps required for coverage."
+            ],
+            [
+              "Child identity information",
+              "Household information",
+              "Indiana residency information",
+              "Income information"
+            ]
+          )
+        );
+
+      } else {
+
+        out.push(
+          program(
+            "chip",
+            "Children's Medicaid / CHIP",
+            "barrier",
+            "Reported income is above the encoded Package C screening ceiling.",
+            [
+              trace(
+                "bad",
+                "Child coverage income screen",
+                money(gross) +
+                " is above " +
+                money(packageC) +
+                ".",
+                "Indiana Hoosier Healthwise"
+              )
+            ],
+            "No benefit estimate",
+            "",
+            [],
+            []
+          )
+        );
+      }
+    }
+
+
+    if (
+      age >= 19 &&
+      !$("disabled").checked
+    ) {
+
+      const hipLimit =
+        table(
+          MED_ADULT,
+          hh,
+          653.70
+        );
+
+      const ok =
+        gross <= hipLimit;
+
+      out.push(
+        program(
+          "hip",
+          "Medicaid — Healthy Indiana Plan",
+          ok ? "strong" : "barrier",
+          ok
+            ? "Reported income falls within the encoded adult Medicaid guideline."
+            : "Reported income is above the encoded adult Medicaid guideline.",
+          [
+            trace(
+              ok ? "good" : "bad",
+              "Adult income screen",
+              money(gross) +
+              (ok ? " is at or below " : " is above ") +
+              money(hipLimit) +
+              ".",
+              "Indiana Medicaid Eligibility Guide"
+            )
+          ],
+          ok
+            ? "Comprehensive health coverage"
+            : "No benefit estimate",
+          ok
+            ? "Healthy Indiana Plan is health coverage rather than a monthly cash benefit."
+            : "",
+          [
+            "Gather identity, residency, household and income information.",
+            "Submit an Indiana health coverage application through FSSA.",
+            "Provide requested verification.",
+            "Review the official eligibility determination.",
+            "If approved, complete any required plan-selection or account steps."
+          ],
+          [
+            "Identification",
+            "Indiana residency information",
+            "Household information",
+            "Income information"
+          ]
+        )
+      );
+    }
+
+
+    if (
+      $("disabled").checked ||
+      $("elderly").checked
+    ) {
+
+      out.push(
+        program(
+          "abd",
+          "Medicaid — Aged / Blind / Disabled Pathway",
+          "potential",
+          "Your answers identify a Medicaid pathway worth applying for.",
+          [
+            trace(
+              "warn",
+              "Special Medicaid pathway",
+              "Aged, blind, disabled, institutional and waiver-related Medicaid categories can use additional income, asset and program-specific rules.",
+              "Indiana Medicaid Eligibility Guide / Policy Manual"
+            )
+          ],
+          "Potential comprehensive health coverage",
+          "The value depends on the Medicaid category and medical services used. Qualifier does not convert coverage into an invented cash amount.",
+          [
+            "Gather identity, residency, income and resource information.",
+            "Gather disability or medical documentation that may be relevant.",
+            "Submit an Indiana Medicaid application.",
+            "Respond to requests for additional medical, disability, income or resource verification.",
+            "Review the official Medicaid category and eligibility determination."
+          ],
+          [
+            "Identification",
+            "Indiana residency information",
+            "Income information",
+            "Resource information",
+            "Disability/medical information, if applicable"
+          ]
+        )
+      );
+    }
+  }
+
+
+  /* ==================================================
+     HOUSING / UTILITIES
+  ================================================== */
+
+  if (chosen("housing")) {
+
+    if ($("utility").checked) {
+
+      const eapLimit =
+        table(EAP3, hh, 484);
+
+      const ok =
+        three <= eapLimit;
+
+      out.push(
+        program(
+          "eap",
+          "LIHEAP / Indiana Energy Assistance Program",
+          ok ? "strong" : "barrier",
+          ok
+            ? "Your recent three-month income falls within the encoded PY2027 guideline."
+            : "Recent three-month income is above the encoded PY2027 guideline.",
+          [
+            trace(
+              ok ? "good" : "bad",
+              "Three-month income screen",
+              money(three) +
+              (ok ? " is at or below " : " is above ") +
+              money(eapLimit) +
+              " for household size " +
+              hh +
+              ".",
+              "Indiana IHCDA EAP PY2027"
+            )
+          ],
+          ok
+            ? "One-time energy-assistance benefit"
+            : "No benefit estimate",
+          ok
+            ? "The actual EAP award depends on program calculations and household circumstances. The statewide eligibility information does not support one universal award amount, so Qualifier does not invent one."
+            : "",
+          [
+            "Gather household income documentation for the required period.",
+            "Gather current utility bills or account information.",
+            "Identify the Local Service Provider serving your area or use Indiana's EAP application system.",
+            "Submit the EAP application and required documents.",
+            "Respond promptly if additional verification is requested.",
+            "Review the official benefit decision and how the assistance will be applied."
+          ],
+          [
+            "Income documentation",
+            "Current utility bill/account statement",
+            "Household-member information",
+            "Identification/residency information as requested"
+          ]
+        )
+      );
+    }
+
+
+    if ($("hcv").checked) {
+
+      out.push(
+        program(
+          "hcv",
+          "Housing Choice Voucher (Section 8)",
+          "potential",
+          "Rental assistance appears worth exploring, but a location-specific income and waiting-list check is required.",
+          [
+            trace(
+              "warn",
+              "Area-specific income limit",
+              "Housing Choice Voucher income limits vary by geographic area and family size.",
+              "HUD / IHCDA"
+            ),
+            trace(
+              "warn",
+              "Voucher availability",
+              "Eligibility does not guarantee immediate assistance because voucher availability and waiting lists are separate issues.",
+              "HUD / IHCDA"
+            )
+          ],
+          "Rental subsidy — amount varies",
+          "The subsidy depends on household income, eligible rent, utility allowances, payment standards and the administering housing agency. A single statewide dollar estimate would be misleading.",
+          [
+            "Identify the Public Housing Agency or IHCDA program serving the area where you want to live.",
+            "Check whether the Housing Choice Voucher waiting list is currently accepting applications.",
+            "Review the current HUD income limit for that geographic area and household size.",
+            "If the waiting list is open, submit the required application or pre-application.",
+            "Keep your contact information current while on the waiting list.",
+            "If selected, complete the housing agency's full eligibility verification and voucher briefing."
+          ],
+          [
+            "Identification",
+            "Household-member information",
+            "Income documentation",
+            "Social Security information where required",
+            "Citizenship/eligible-status documentation where applicable"
+          ]
+        )
+      );
+    }
+  }
+
+
+  last = {
+    programs: out,
+    summary:
+      "Qualifier screened " +
+      out.length +
+      " program pathways using the information you provided."
+  };
+
+  render();
+}
+
+
+/* ----------------------------------------------------
+   RESULTS
+---------------------------------------------------- */
+
+function render() {
+
+  const result = $("result");
+
+  result.classList.remove("hidden");
+
+  const positive =
+    last.programs.filter(
+      p => p.status !== "barrier"
+    );
+
+  let html =
+    "<h2>Your benefits action plan</h2>" +
+    "<p>" +
+    last.summary +
+    "</p>";
+
+  if (positive.length) {
+
+    html +=
+      "<div class='mode'><b>" +
+      positive.length +
+      " program pathway" +
+      (positive.length === 1 ? "" : "s") +
+      " may be worth pursuing.</b> " +
+      "Start with the programs marked green, then pursue the yellow programs as appropriate.</div>";
+  }
+
+  if (!last.programs.length) {
+
+    html +=
+      "<p>No program pathway was generated from the selected category and answers.</p>";
+  }
+
+  last.programs.forEach(p => {
+
+    let cls =
+      p.status === "strong"
+        ? "good"
+        : p.status === "barrier"
+        ? "bad"
+        : "warn";
+
+    let label =
+      p.status === "strong"
+        ? "Strong potential match"
+        : p.status === "barrier"
+        ? "Screening barrier"
+        : "Potential match — worth applying";
+
+    html +=
+      "<div class='program'>" +
+      "<span class='pill " +
+      cls +
+      "'>" +
+      label +
+      "</span>" +
+      "<h3>" +
+      p.name +
+      "</h3>" +
+      "<p>" +
+      p.reason +
+      "</p>";
+
+    if (p.benefit) {
+
+      html +=
+        "<div class='benefitbox'>" +
+        "<div class='small'><b>Estimated benefit</b></div>" +
+        "<div class='amount'>" +
+        p.benefit +
+        "</div>";
+
+      if (p.benefitNote) {
+
+        html +=
+          "<div class='small'>" +
+          p.benefitNote +
+          "</div>";
+      }
+
+      html += "</div>";
+    }
+
+    p.traces.forEach(t => {
+
+      let traceClass =
+        t.status === "good"
+          ? "goodt"
+          : t.status === "bad"
+          ? "badt"
+          : "warnt";
+
+      html +=
+        "<div class='trace " +
+        traceClass +
+        "'>" +
+        "<b>" +
+        t.title +
+        "</b><br>" +
+        t.body +
+        "<div class='src'>Ground truth: " +
+        t.source +
+        "</div>" +
+        "</div>";
+    });
+
+    if (
+      p.status !== "barrier" &&
+      p.steps &&
+      p.steps.length
+    ) {
+
+      html +=
+        "<div class='actionplan'>" +
+        "<h4>Your next steps</h4>" +
+        "<ol>";
+
+      p.steps.forEach(step => {
+
+        html +=
+          "<li>" +
+          step +
+          "</li>";
+      });
+
+      html +=
+        "</ol>";
+
+      if (
+        p.documents &&
+        p.documents.length
+      ) {
+
+        html +=
+          "<div class='docs'>" +
+          "<b>Documents to start gathering</b><ul>";
+
+        p.documents.forEach(doc => {
+
+          html +=
+            "<li>" +
+            doc +
+            "</li>";
+        });
+
+        html +=
+          "</ul></div>";
+      }
+
+      html += "</div>";
+    }
+
+    html += "</div>";
+  });
+
+  html +=
+    "<p class='small'><b>Important:</b> Qualifier provides preliminary screening and benefit estimates only. " +
+    "The administering agency makes the official eligibility determination and calculates the final benefit amount.</p>";
+
+  result.innerHTML = html;
+
+  result.scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+
+$("run").onclick = run;
+
+$("reset").onclick =
+  () => location.reload();
+
+
+/* ----------------------------------------------------
+   LOCAL AI FALLBACK
+---------------------------------------------------- */
+
+function localFallback(q) {
+
+  const text =
+    q.toLowerCase();
+
+  const answers = [
+
+    [
+      ["snap"],
+      "Indiana SNAP provides monthly food assistance. Qualifier can show the current maximum allotment for the household size, but actual benefits depend on net income and the official FSSA calculation."
+    ],
+
+    [
+      ["wic"],
+      "Indiana WIC provides nutrition services and prescribed supplemental foods to qualifying pregnant, breastfeeding/postpartum participants, infants and children under five. WIC also requires a nutrition assessment."
+    ],
+
+    [
+      ["chip","package c"],
+      "Indiana CHIP is administered through Hoosier Healthwise Package C for qualifying children. It is health coverage rather than a cash benefit."
+    ],
+
+    [
+      ["liheap","energy","eap"],
+      "Indiana calls LIHEAP the Energy Assistance Program. It provides energy-bill assistance, but the actual award depends on the program calculation and household circumstances."
+    ],
+
+    [
+      ["section 8","voucher","housing choice"],
+      "Housing Choice Voucher assistance depends on location-specific HUD income limits and local housing-agency rules. Waiting-list availability is separate from basic eligibility."
+    ],
+
+    [
+      ["school lunch","school meal","free lunch","reduced-price"],
+      "Indiana students may qualify for free or reduced-price school meals through income guidelines or applicable direct-certification pathways."
+    ],
+
+    [
+      ["tanf"],
+      "Indiana TANF provides cash assistance to qualifying families with children. Qualifier can show the published maximum payment for the assistance-group size, but actual benefits depend on countable income."
+    ],
+
+    [
+      ["medicaid","hip","health coverage"],
+      "Indiana Medicaid eligibility depends on the coverage category. Children, pregnant individuals, adults and aged/blind/disabled applicants can have different rules."
+    ]
+  ];
+
+  for (const [keys, answer] of answers) {
+
+    if (
+      keys.some(
+        key => text.includes(key)
+      )
+    ) {
+
+      return answer;
+    }
+  }
+
+  return "I cannot answer that reliably from the local fallback knowledge. Qualifier will not guess.";
+}
+
+
+/* ----------------------------------------------------
+   LIVE GROUNDED AI
+---------------------------------------------------- */
+
+async function ask() {
+
+  const q =
+    $("chat").value.trim();
+
+  if (!q) return;
+
+  const log =
+    $("chatlog");
+
+  log.innerHTML +=
+    "<div class='msg user'>" +
+    q.replace(/[<>]/g, "") +
+    "</div>";
+
+  $("chat").value = "";
+
+  const wait =
+    document.createElement("div");
+
+  wait.className =
+    "msg bot";
+
+  wait.textContent =
+    "Checking approved sources…";
+
+  log.appendChild(wait);
+
+  log.scrollTop =
+    log.scrollHeight;
+
+  try {
+
+    const screening =
+      last || null;
+
+    const response =
+      await fetch(
+        "/api/ask",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+          body: JSON.stringify({
+            question: q,
+            screening
+          })
+        }
+      );
+
+    const data =
+      await response.json()
+      .catch(() => ({}));
+
+    if (!response.ok) {
+
+      throw new Error(
+        data.detail ||
+        data.error ||
+        ("HTTP " + response.status)
+      );
+    }
+
+    wait.innerHTML =
+      (data.answer ||
+       "No supported answer returned.")
+      .replace(/\n/g, "<br>") +
+
+      (
+        data.sources &&
+        data.sources.length
+          ? "<div class='src'>Sources: " +
+            data.sources
+              .map(x => x.title)
+              .join("; ") +
+            "</div>"
+          : ""
+      );
+
+  } catch (e) {
+
+    wait.innerHTML =
+      "<b>Local grounded fallback:</b> " +
+      localFallback(q) +
+      "<div class='src'>" +
+      "The live grounded service is temporarily unavailable." +
+      "</div>";
+  }
+
+  log.scrollTop =
+    log.scrollHeight;
+}
+
+
+$("ask").onclick =
+  ask;
+
+$("chat").addEventListener(
+  "keydown",
+  e => {
+
+    if (e.key === "Enter") {
+      ask();
+    }
+  }
+);
+
+</script>
+</body>
+</html>
